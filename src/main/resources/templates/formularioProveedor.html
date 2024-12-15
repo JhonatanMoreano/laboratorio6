@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Formulario Proveedor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <!-- Titulo dinámico para nuevo o editar proveedor -->
+            <h1 th:text="${#strings.isEmpty(proveedor.id) ? 'Nuevo Proveedor' : 'Editar Proveedor'}"></h1>
+            <form th:action="@{/proveedores}" th:object="${proveedor}" method="post">
+                <input type="hidden" th:field="*{id}"> <!-- Campo oculto para ID (no se muestra, pero se envia) -->
+
+                <!-- Campo para el nombre del proveedor -->
+                <div class="row mb-3">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="direccion" class="col-sm-2 col-form-label">Dirección:</label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="direccion" th:field="*{direccion}" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="telefono" class="col-sm-2 col-form-label">Telefono:</label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="telefono" th:field="*{telefono}" required />
+                    </div>
+                </div>
+
+                <!-- Campo para el correo del proveedor -->
+                <div class="row mb-3">
+                    <label for="correo" class="col-sm-2 col-form-label">Correo:</label>
+                    <div class="col-6">
+                        <input type="email" class="form-control" id="correo" th:field="*{correo}" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </body>
+</html>
